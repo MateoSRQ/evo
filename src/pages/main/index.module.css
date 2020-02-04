@@ -1,0 +1,36 @@
+@value fullWidth: 1440px;
+@value leftWidth: 320px;
+@value centerWidth: 800px;
+
+.component {
+    width: fullWidth;
+    height: 100%;
+    outline: 1px solid red;
+    position: relative;
+}
+
+.left {
+    position: absolute;
+    left: 0;
+    width: leftWidth;
+    height: 100%;
+    background-color: chartreuse;
+}
+
+.center {
+    position: absolute;
+    left: leftWidth;
+    width: centerWidth;
+    height: 100%;
+    background-color: #4471ff;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+    width: calc(100% - leftWidth - centerWidth);
+    height: 100%;
+    background-color: #ff000c;
+}
+
+
