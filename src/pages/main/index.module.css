@@ -1,0 +1,65 @@
+@value Width: 1400px;
+@value leftWidth: 280px;
+@value middleWidth: 840px;
+@value titleHeight: 50px;
+@value padding: 12px;
+
+.component {
+    height: 100%;
+    width: 100%;
+    background-color: #e9ebee;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.body {
+    height: calc(100% - titleHeight);
+    background-color: #e9ebee;
+    margin-top: titleHeight;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.title {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: titleHeight;
+    background-color: #72766e;
+    z-index: 2;
+}
+
+.left {
+    width: leftWidth;
+    height: 100%;
+}
+
+.middle {
+    /*position: absolute;*/
+    /*left: leftWidth;*/
+    /*top: 0;*/
+    width: middleWidth;
+    height: 100%;
+    /*background-color: #e9ebee;*/
+    background-color: aqua;
+}
+
+.right {
+    width: calc(Width - leftWidth - middleWidth);
+    height: 100%;
+    background-color: burlywood;
+}
+
+.container {
+    width: calc(100% - padding);
+    height: calc(100% - padding);
+    left: calc(padding/2);
+    top: calc(padding/2);
+    background-color: #ffffff;
+    position: relative;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
