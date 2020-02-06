@@ -9,6 +9,7 @@ log.setLevel('warn');
 
 interface Props {
     visible: boolean
+    onCancel?: any
 }
 interface State {
 }
@@ -17,11 +18,19 @@ export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('Master.modals.newSede:constructor reached');
         super(props);
+        this.handleFormChange = this.handleFormChange.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
 
-    handleSubmit (e: any) {
+    handleFormChange (e: any) {
         log.info('Master.modals.newSede:handleSubmit reached');
+        console.log('xoxoxoxoox');
         console.log(e)
+    }
+
+    handleCancel() {
+        log.info('Master.modals.newSede:handleCancel reached');
+        this.props?.onCancel();
     }
 
     render() {
@@ -30,16 +39,20 @@ export default class Component extends React.Component<Props, State> {
             <div className={[style.component].join(' ')}>
                 <Modal
                     title="Basic Modal"
-                    visible={this.props.visible}
                     width={440}
-                    // visible={this.state.visible}
+                    visible={this.props.visible}
                     // onOk={this.handleOk}
-                    // onCancel={this.handleCancel}
+                    onCancel={this.handleCancel}
                 >
-                    <Form handleSubmit={this.handleSubmit}>
-                        <Input name='item1' label='Item 1'/>
-                        <Input name='item2' label='Item 2'/>
-                        <Input name='item3' label='Item 3'/>
+                    <Form
+                        handleChange={this.handleFormChange}
+                        validators={{
+                            nombre: { presence: {allowEmpty: false, message: 'Requerido' }}
+                        }}
+                    >
+                        <Input name='nombre' label='Nombre' />
+                        <Input name='codigo' label='Código'/>
+                        <Input name='descripcion' label='Descripción'/>
                     </Form>
                 </Modal>
             </div>

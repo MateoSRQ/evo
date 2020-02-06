@@ -29,6 +29,8 @@ class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('Form:constructor reached');
         super(props);
+        console.log('PROPS');
+        console.log(this.props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
@@ -40,19 +42,20 @@ class Component extends React.Component<Props, State> {
 
     handleChange(e: {name: string, value: any}): void {
         log.info('Form:handleChange reached');
-        console.log('-----')
-        this.values[e.name] = e.value
-        console.log(this.values)
+        this.values[e.name] = e.value;
+        if (this.props.handleChange) this.props.handleChange(this.values);
     }
 
     handleSubmit(e: any)  {
         e.preventDefault();
-        this.props.handleSubmit(e);
+        this.props?.handleSubmit(e);
     };
 
     handleBlur(e: any): void {
         log.info('Form:handleBlur reached');
+        console.log(this.props.validators)
         if (this.props.validators && this.props.validators[e.currentTarget.name]) {
+            console.log('oooo');
             let result = validate.single(e.currentTarget.value, this.props.validators[e.currentTarget.name]);
         }
     }

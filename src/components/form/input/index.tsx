@@ -34,8 +34,13 @@ export default class Component extends React.Component<Props, State> {
 
     onBlur(e: any) {
         log.info('Form.Input:onBlur reached');
+        console.log('this')
         if (this.props.validators) {
             let result = validate.single(e.currentTarget.value, this.props.validators);
+            console.log('result')
+            console.log(this.state.value)
+            console.log(this.props.validators)
+            console.log(result)
             if (result == undefined ) {
                 this.setState({result: result, validateStatus: 'success'});
             }

@@ -9,7 +9,6 @@ import ModalNuevaSede from '../modals/newSede';
 
 log.setLevel('warn');
 
-
 interface Props {}
 interface State {
     modalNuevaSede_visible: boolean
@@ -53,7 +52,10 @@ export default class Component extends React.Component<Props, State> {
                         </div>
                     </div>
                 </Scrollbars>
-                <ModalNuevaSede visible={this.state.modalNuevaSede_visible} />
+                <ModalNuevaSede
+                    visible={this.state.modalNuevaSede_visible}
+                    onCancel={() => {this.setState({modalNuevaSede_visible: false})}}
+                />
             </div>
         );
     }
