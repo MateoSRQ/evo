@@ -2,7 +2,10 @@ import React from 'react';
 import style from './index.module.css';
 import log from 'loglevel';
 import MediaQuery from 'react-responsive'
+import { Scrollbars } from 'react-custom-scrollbars';
+
 import Menu from '../../components/menu';
+import Sidebar from '../master/sidebar';
 
 interface State {
     bigSize: boolean
@@ -53,9 +56,9 @@ export default class Component extends React.Component<Props, State> {
                     </MediaQuery>
                     <div className={[style.middle].join(' ')} />
                     <div className={[style.right].join(' ')} >
-                        {/*<div className={[style.container].join(' ')}>*/}
-                        {/*    <Menu />*/}
-                        {/*</div>*/}
+                        <div className={[style.container].join(' ')}>
+                            <Sidebar />
+                        </div>
                     </div>
                 </div>
             </div>

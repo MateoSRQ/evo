@@ -1,0 +1,55 @@
+@value padding: 2px;
+
+.component {
+    height: 100%;
+    width: 100%;
+}
+
+.subContainer {
+    width: calc(100% - padding) !important;
+    height: calc(100% - padding - 10px) !important;
+    left: calc(padding/2);
+    top: calc(padding/2);
+    background-color: #ffffff;
+    position: relative;
+}
+
+.subContainerTitle {
+    height: 40px !important;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif !important;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.subContainerBody {
+    height: calc(100% - 50px) !important;
+    /*outline: 1px solid black;*/
+}
+
+.component * {
+    /*font-family: 'Noto Sans', sans-serif;*/
+    /*font-family: 'Poppins', sans-serif;*/
+    /*font-family: 'Muli', sans-serif;*/
+    /*font-family: 'Fira Sans', sans-serif;*/
+    /*font-family: 'Quicksand', sans-serif;*/
+    /*font-family: 'Cabin', sans-serif;*/
+}
+
+.scroller {
+    width: calc(100% - 24px);
+    height: 2000px;
+    margin-left: 10px;
+    /*outline: 1px solid red;*/
+}
+
+.item {
+    padding-top: 14px;
+}
+
+/*
+style={{width: 'calc(100% - 20px)', height: '2000px'}}
+ */
