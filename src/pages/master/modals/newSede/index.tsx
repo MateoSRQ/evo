@@ -13,6 +13,7 @@ interface Props {
     onCancel?: any
 }
 interface State {
+    modalClass: any
 }
 
 export default class Component extends React.Component<Props, State> {
@@ -23,12 +24,23 @@ export default class Component extends React.Component<Props, State> {
         this.handleFormChange = this.handleFormChange.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
         this.handleOk = this.handleOk.bind(this);
+
+        console.log('XXX')
+        console.log(style)
+
+        this.state = {
+            modalClass: null
+        }
     }
 
     handleOk() {
         log.info('Master.modals.newSede:handleOk reached');
         if (_.find(this.values, (o: any) => { return o.result != undefined })) {
             console.log('nok');
+            this.setState({modalClass: style.wobblehorbottom})
+            setTimeout(() => {
+                this.setState({modalClass: null})
+            }, 1000);
         }
         else {
             console.log('ok');
@@ -47,6 +59,9 @@ export default class Component extends React.Component<Props, State> {
 
     render() {
         log.info('Master.modals.newSede:render reached');
+        console.log('YYY')
+        console.log(this.state)
+
         return (
             <div className={[style.component].join(' ')}>
                 <Modal
@@ -55,10 +70,10 @@ export default class Component extends React.Component<Props, State> {
                     visible={this.props.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    className={[this.state.modalClass].join(' ')}
                 >
                     <Form
                         handleChange={this.handleFormChange}
-
                         validators={{
                             nombre: { presence: {allowEmpty: false, message: 'Requerido' }}
                         }}

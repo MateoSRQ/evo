@@ -15,7 +15,8 @@ interface Props {
     children?: any,
     handleChange?: any,
     handleSubmit?: any,
-    validators?: any
+    validators?: any,
+    [x: string]: any
 }
 
 interface State {
@@ -66,16 +67,21 @@ class Component extends React.Component<Props, State> {
 
     render() {
         log.info('Form:render reached');
-        let children = null;
 
-        if (this.props.children) {
+        console.log('PROPS');
+        console.log(this.props);
+
+        let {handleChange, validators, children, ...props} = this.props;
+
+            if (this.props.children) {
             children = (Array.isArray(this.props.children))?this.props.children:[this.props.children];
             children = children.map((child: any) => {
                 let elem = React.cloneElement(child, {
                     key: child.props.name,
                     handleChange: this.handleChange,
                     handleBlur: this.handleBlur,
-                    validators: (this.props.validators && this.props.validators[child.props.name])?this.props.validators[child.props.name]:null
+                    validators: (this.props.validators && this.props.validators[child.props.name])?this.props.validators[child.props.name]:null,
+                    ...props
                 })
                 return elem;
             })
