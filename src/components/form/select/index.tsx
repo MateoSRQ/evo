@@ -1,10 +1,12 @@
 import React from 'react';
 import style from './index.module.css'
 import log from 'loglevel';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import validate from 'validate.js';
-
+import { Form, Select } from 'antd';
 import 'antd/dist/antd.css';
+
+const { Option } = Select;
+
 log.setLevel('warn');
 
 interface Props {
@@ -21,7 +23,7 @@ interface State {
 
 export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
-        log.info('Form.Input:constructor reached');
+        log.info('Form.Select:constructor reached');
         super(props);
         this.onBlur = this.onBlur.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -33,7 +35,7 @@ export default class Component extends React.Component<Props, State> {
     }
 
     onBlur() {
-        log.info('Form.Input:onBlur reached');
+        log.info('Form.Select:onBlur reached');
         if (this.props.validators) {
             let result = validate.single(this.state.value, this.props.validators);
             if (result == undefined ) {
@@ -46,11 +48,11 @@ export default class Component extends React.Component<Props, State> {
     }
 
     onChange(e: any) {
-        log.info('Form.Input:onChange reached');
-        this.setState({value: e.target.value});
+        log.info('Form.Select:onChange reached');
+        this.setState({value: e});
         this.props.handleChange({
             name: this.props.name,
-            value: e.target.value
+            value: e
         });
     }
 
@@ -61,8 +63,8 @@ export default class Component extends React.Component<Props, State> {
     }
 
     render() {
-        log.info('Form.Input:constructor reached');
-        let {name, label, handleBlur, handleValidation, handleSubmit, validators, handleChange, ...props} = this.props;
+        log.info('Form.Select:constructor reached');
+        let {name, label, handleBlur, handleValidation, handleSubmit, handleChange, ...props} = this.props;
         return (
             <Form.Item
                 label={label?label:null}
@@ -70,13 +72,16 @@ export default class Component extends React.Component<Props, State> {
                 help={this.state.result}
                 className={[style.component].join(' ')}
             >
-                <Input
-                    name={name}
+                <Select
+                    //name={name}
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                     value={this.state.value}
                     {...props}
-                />
+                >
+                    <Option value="china">China</Option>
+                    <Option value="usa">U.S.A</Option>
+                </Select>
             </Form.Item>
         )
     }

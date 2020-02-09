@@ -6,6 +6,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import Menu from '../../components/menu';
 import Sidebar from '../master/sidebar';
+import Template from '../../pages/template';
 
 interface State {
     bigSize: boolean
@@ -54,8 +55,10 @@ export default class Component extends React.Component<Props, State> {
                             </div>
                         </div>
                     </MediaQuery>
-                    <div className={[style.middle].join(' ')} />
-                    <div className={[style.right].join(' ')} >
+                    <div className={[style.middle].join(' ')}>
+                        <Template />
+                    </div>
+                    <div className={[style.right].join(' ')}>
                         <div className={[style.container].join(' ')}>
                             <Sidebar />
                         </div>
