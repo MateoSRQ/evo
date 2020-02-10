@@ -1,16 +1,12 @@
 .component {
     height: 100%;
     width: 100%;
-    background-color: #d3d5d8;
 }
 
 .title {
-    /*text-align: center;*/
     font-size: 26px !important;
     font-weight: 600;
-
     font-family: 'Quicksand', sans-serif;
-    /* font-family: 'Cabin', sans-serif; */
     letter-spacing: -0.4px;
     width: 100%;
     height: 60px;
@@ -19,7 +15,6 @@
 }
 
 .breadcrumb {
-
     letter-spacing: -0.4px;
     width: 100%;
     height: 30px;
@@ -32,4 +27,16 @@
     font-size: 13px !important;
     font-weight: 600;
     font-family: 'Noto Sans', sans-serif;
+}
+
+.component :global(.ant-collapse-borderless) {
+    background-color: #fff !important;
+}
+
+.body {
+    width: calc(100% - 20px);
+    height: calc(100% - 110px);
+    margin-left: 10px;
+    margin-top: 10px;
+    outline: 1px solid red;
 }

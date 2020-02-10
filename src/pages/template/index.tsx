@@ -6,6 +6,8 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { Breadcrumb } from 'antd';
 
 import 'antd/dist/antd.css';
+import List from '../../components/list';
+import ListItem from './listitem';
 
 interface State {
 }
@@ -19,7 +21,6 @@ export default class Component extends React.Component<Props, State> {
 
     render() {
         log.info('Template:render reached');
-
         return (
             <div className={[style.component].join(' ')}>
                 <div className={[style.breadcrumb].join(' ')}>
@@ -34,8 +35,15 @@ export default class Component extends React.Component<Props, State> {
                         <Breadcrumb.Item>An Application</Breadcrumb.Item>
                     </Breadcrumb>
                 </div>
-
                 <div className={[style.title].join(' ')}>Example Title of Template </div>
+                <div className={[style.body].join(' ')}>
+                    <List item={ListItem}>
+                        <div key="1" />
+                        <div key="2" />
+                        <div key="3" />
+                    </List>
+
+                </div>
             </div>
         );
     }

@@ -29,8 +29,8 @@
     top: 0;
     width: 100%;
     height: titleHeight;
-    background-color: #72766e;
     z-index: 2;
+    background-color: slategray;
 }
 
 .left {
@@ -39,13 +39,9 @@
 }
 
 .middle {
-    /*position: absolute;*/
-    /*left: leftWidth;*/
-    /*top: 0;*/
     width: middleWidth;
     height: 100%;
-    /*background-color: #e9ebee;*/
-    background-color: aqua;
+    background-color: white;
 }
 
 .right {
