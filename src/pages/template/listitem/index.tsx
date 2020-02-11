@@ -7,18 +7,20 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { Collapse, Icon } from 'antd';
 import { Card } from 'antd';
 import { Row, Col } from 'antd';
-import { Button } from 'antd';
-
+import { Tabs, Button } from 'antd';
+import { Divider } from 'antd';
 import {
     CollapsibleComponent,
     CollapsibleHead,
     CollapsibleContent
 } from "react-collapsible-component";
-
+import { TreeSelect } from 'antd';
 
 import 'antd/dist/antd.css';
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
+const { TabPane } = Tabs;
+const { SHOW_PARENT } = TreeSelect;
 
 interface State {
 }
@@ -38,6 +40,99 @@ export default class Component extends React.Component<Props, State> {
 
     render() {
         log.info('Template:render reached');
+        const treeData = [
+            {
+                title: 'Node1',
+                value: '0-0',
+                key: '0-0',
+                children: [
+                    {
+                        title: 'Child Node1',
+                        value: '0-0-0',
+                        key: '0-0-0',
+                    },
+                ],
+            },
+            {
+                title: 'Node2',
+                value: '0-1',
+                key: '0-1',
+                children: [
+                    {
+                        title: 'Child Node3',
+                        value: '0-1-0',
+                        key: '0-1-0',
+                    },
+                    {
+                        title: 'Child Node4',
+                        value: '0-1-1',
+                        key: '0-1-1',
+                    },
+                    {
+                        title: 'Child Node5',
+                        value: '0-1-2',
+                        key: '0-1-2',
+                    },
+                ],
+            },
+            {
+                title: 'Node3',
+                value: '0-2',
+                key: '0-2',
+                children: [
+                    {
+                        title: 'Child Node3',
+                        value: '0-2-0',
+                        key: '0-2-0',
+                    },
+                    {
+                        title: 'Child Node4',
+                        value: '0-2-1',
+                        key: '0-2-1',
+                    },
+                    {
+                        title: 'Child Node5',
+                        value: '0-2-2',
+                        key: '0-2-2',
+                    },
+                ],
+            },
+            {
+                title: 'Node4',
+                value: '0-3',
+                key: '0-3',
+                children: [
+                    {
+                        title: 'Child Node3',
+                        value: '0-3-0',
+                        key: '0-3-0',
+                    },
+                    {
+                        title: 'Child Node4',
+                        value: '0-3-1',
+                        key: '0-3-1',
+                    },
+                    {
+                        title: 'Child Node5',
+                        value: '0-3-2',
+                        key: '0-3-2',
+                    },
+                ],
+            },
+
+        ];
+        const tProps = {
+            treeData,
+            // value: this.state.value,
+            // onChange: this.onChange,
+            treeCheckable: true,
+            showCheckedStrategy: SHOW_PARENT,
+            searchPlaceholder: 'Please select',
+            maxTagCount: 3,
+            style: {
+                width: '100%',
+            },
+        };
         return (
             <div className={[style.component].join(' ')} key={this.props.key}>
                 <Card className={[style.card].join(' ')}>
@@ -52,31 +147,59 @@ export default class Component extends React.Component<Props, State> {
                     </Row>
                     <CollapsibleComponent>
                         <CollapsibleContent className={[style.collapsible].join(' ')}>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing
-                                elit, sed do eiusmod tempor incididunt ut labore et
-                                dolore magna aliqua. Ut enim ad minim veniam, quis
-                                nostrud exercitation ullamco laboris nisi ut aliquip
-                                ex{" "}
-                            </p>
-                            <Row>
-                                <Col span={8} className={[style.buttonHolder].join(' ')}>
-                                    <Button className={[style.button].join(' ')} block size={'small'}>L</Button>
-                                </Col>
-                                <Col span={8} className={[style.buttonHolder].join(' ')}>
-                                    <Button className={[style.button].join(' ')} block size={'small'}>L</Button>
-                                </Col>
-                                <Col span={8} className={[style.buttonHolder].join(' ')}>
-                                    <Button className={[style.button].join(' ')} block size={'small'}>L</Button>
-                                </Col>
-                            </Row>
+                            <Divider />
+                            <Tabs type="card" size="small" className={[style.tabs].join(' ')}>
+                                <TabPane tab="Visual" key="1">
+                                    <div className={[style.panel].join(' ')}>
+                                        <TreeSelect {...tProps} />
+                                    </div>
+                                </TabPane>
+                                <TabPane tab="Laboratorio" key="2">
+                                    <div className={[style.panel].join(' ')}>
+                                        Visual
+                                    </div>
+                                </TabPane>
+                                <TabPane tab="Electrocardigrama" key="3">
+                                    <div className={[style.panel].join(' ')}>
+                                        Visual
+                                    </div>
+                                </TabPane>
+                                <TabPane tab="Consultorio" key="4">
+                                    <div className={[style.panel].join(' ')}>
+                                        Visual
+                                    </div>
+                                </TabPane>
+                                <TabPane tab="Psicología" key="5">
+                                    <div className={[style.panel].join(' ')}>
+                                        Visual
+                                    </div>
+                                </TabPane>
+                                <TabPane tab="Administrativo" key="6">
+                                    <div className={[style.panel].join(' ')}>
+                                        Visual
+                                    </div>
+                                </TabPane>
+                            </Tabs>
+
+
+                            {/*<Row>*/}
+                            {/*    <Col span={8} className={[style.buttonHolder].join(' ')}>*/}
+                            {/*        <Button className={[style.button].join(' ')} block size={'small'}>L</Button>*/}
+                            {/*    </Col>*/}
+                            {/*    <Col span={8} className={[style.buttonHolder].join(' ')}>*/}
+                            {/*        <Button className={[style.button].join(' ')} block size={'small'}>L</Button>*/}
+                            {/*    </Col>*/}
+                            {/*    <Col span={8} className={[style.buttonHolder].join(' ')}>*/}
+                            {/*        <Button className={[style.button].join(' ')} block size={'small'}>L</Button>*/}
+                            {/*    </Col>*/}
+                            {/*</Row>*/}
                         </CollapsibleContent>
                         <CollapsibleHead
                             isExpanded={true}
                             showContentAboveButton={true}
                             className={[style.centered].join(' ')}
                         >
-                            <Icon type="caret-down" style={{color: 'black'}}/>
+                            <Icon type="ellipsis" style={{color: 'black'}}/>
                         </CollapsibleHead>
                     </CollapsibleComponent>
                     {/*<Collapse*/}
