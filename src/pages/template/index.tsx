@@ -3,11 +3,12 @@ import style from './index.module.css';
 import log from 'loglevel';
 
 import { Scrollbars } from 'react-custom-scrollbars';
-import { Breadcrumb } from 'antd';
+import {Breadcrumb, Icon, Spin} from 'antd';
 
 import 'antd/dist/antd.css';
 import List from '../../components/list';
 import ListItem from './listitem';
+import Loader from '../../components/loader';
 
 interface State {
 }
@@ -37,11 +38,13 @@ export default class Component extends React.Component<Props, State> {
                 </div>
                 <div className={[style.title].join(' ')}>Example Title of Template </div>
                 <div className={[style.body].join(' ')}>
-                    <List item={ListItem}>
-                        <div key="1" />
-                        <div key="2" />
-                        <div key="3" />
-                    </List>
+                    <Loader spin={<Spin indicator={<Icon type="loading" style={{ fontSize: 40 }} spin />} />}>
+                        <List item={ListItem}>
+                            <div key="1" />
+                            <div key="2" />
+                            <div key="3" />
+                        </List>
+                    </Loader>
 
                 </div>
             </div>

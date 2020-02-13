@@ -17,9 +17,13 @@ import {
 import { TreeSelect } from 'antd';
 
 import 'antd/dist/antd.css';
+
+
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
 const { TabPane } = Tabs;
+
+
 const { SHOW_PARENT } = TreeSelect;
 
 interface State {
@@ -33,8 +37,6 @@ export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('Template:constructor reached');
         super(props);
-        console.log('props')
-        console.log(props)
     }
 
 
@@ -134,6 +136,7 @@ export default class Component extends React.Component<Props, State> {
             },
         };
         return (
+
             <div className={[style.component].join(' ')} key={this.props.key}>
                 <Card className={[style.card].join(' ')}>
                     <Row>
