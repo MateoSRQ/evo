@@ -10,30 +10,51 @@ log.setLevel('warn');
 
 interface Props {
     children?: any,
-    spin?: any
+    loading?: any,
+    error?: any,
+    status?: string
+};
+
+interface State {
+    status: string
 }
-export default class Component extends React.Component<Props> {
+
+export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('Loader:constructor reached');
         super(props);
-
+        this.state = {
+            status: this.props.status?this.props.status:'loaded'
+        };
     }
 
     render() {
         log.info('Loader:render reached');
-        let spin =  <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} />;
-        if (this.props.spin) {
-            spin = this.props.spin;
-        }
+        let loading =  <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} />;
+        let error   =  <Icon type="exclamation-circle" style={{ fontSize: 24, color: '#b60005' }} />
+        if (this.props.loading) loading = this.props.loading;
+        if (this.props.error) error = this.props.error;
+
+        let load = null;
+
+        switch (this.state.status) {
+            case 'loaded':
+                load = null;
+                break;
+            case 'loading':
+                load = <div className={[style.loader].join(' ')}>{loading}</div>;
+                break;
+            case 'error':
+                load =<div className={[style.loader].join(' ')}>{error}</div>
+                break;
+        };
 
         return (
             <div className={[style.component].join(' ')}>
                 <div className={[style.container].join(' ')}>
                     {this.props.children}
                 </div>
-                <div className={[style.loader].join(' ')}>
-                    {spin}
-                </div>
+                {load}
             </div>
         );
     }

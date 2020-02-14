@@ -38,7 +38,10 @@ export default class Component extends React.Component<Props, State> {
                 </div>
                 <div className={[style.title].join(' ')}>Example Title of Template </div>
                 <div className={[style.body].join(' ')}>
-                    <Loader spin={<Spin indicator={<Icon type="loading" style={{ fontSize: 40 }} spin />} />}>
+                    <Loader
+                        loading={<Spin indicator={<Icon type="loading" style={{ fontSize: 40 }} spin />} />}
+                        error={<Icon type="exclamation-circle" style={{ fontSize: 40, color: '#b60005' }} />}
+                    >
                         <List item={ListItem}>
                             <div key="1" />
                             <div key="2" />

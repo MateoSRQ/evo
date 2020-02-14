@@ -141,9 +141,9 @@ export default class Component extends React.Component<Props, State> {
                 <Card className={[style.card].join(' ')}>
                     <Row>
                         <Col span={18}>
-                            <div className={[style.prefix].join(' ')}>SEDE</div>
-                            <div className={[style.title].join(' ')}>Title of Item</div>
-                            <div className={[style.subTitle].join(' ')}>This is a brief description</div>
+                            <div className={[style.prefix].join(' ')}>SEDE 00001001</div>
+                            <div className={[style.title].join(' ')}>La Victoria</div>
+                            <div className={[style.subTitle].join(' ')}>Sede La Victoria, Calle San Blas 312, La Victoria</div>
                         </Col>
                         <Col span={6}>
                         </Col>
@@ -154,7 +154,81 @@ export default class Component extends React.Component<Props, State> {
                             <Tabs type="card" size="small" className={[style.tabs].join(' ')}>
                                 <TabPane tab="Visual" key="1">
                                     <div className={[style.panel].join(' ')}>
-                                        <TreeSelect {...tProps} />
+
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+                                        <div className={[style.well].join(' ')}>
+                                            <div className={[style.wellTitle].join(' ')}>
+                                                Visual #1
+                                            </div>
+                                            <TreeSelect {...tProps} />
+                                        </div>
+
+
                                     </div>
                                 </TabPane>
                                 <TabPane tab="Laboratorio" key="2">
@@ -183,19 +257,6 @@ export default class Component extends React.Component<Props, State> {
                                     </div>
                                 </TabPane>
                             </Tabs>
-
-
-                            {/*<Row>*/}
-                            {/*    <Col span={8} className={[style.buttonHolder].join(' ')}>*/}
-                            {/*        <Button className={[style.button].join(' ')} block size={'small'}>L</Button>*/}
-                            {/*    </Col>*/}
-                            {/*    <Col span={8} className={[style.buttonHolder].join(' ')}>*/}
-                            {/*        <Button className={[style.button].join(' ')} block size={'small'}>L</Button>*/}
-                            {/*    </Col>*/}
-                            {/*    <Col span={8} className={[style.buttonHolder].join(' ')}>*/}
-                            {/*        <Button className={[style.button].join(' ')} block size={'small'}>L</Button>*/}
-                            {/*    </Col>*/}
-                            {/*</Row>*/}
                         </CollapsibleContent>
                         <CollapsibleHead
                             isExpanded={true}
@@ -205,14 +266,6 @@ export default class Component extends React.Component<Props, State> {
                             <Icon type="ellipsis" style={{color: 'black'}}/>
                         </CollapsibleHead>
                     </CollapsibleComponent>
-                    {/*<Collapse*/}
-                    {/*    bordered={false}*/}
-                    {/*    expandIcon={({ isActive }) => <Icon type="caret-down" rotate={isActive ? 180 : 0} />}*/}
-                    {/*>*/}
-                    {/*    <Panel header="" key="1">*/}
-                    {/*        <p>xxxx</p>*/}
-                    {/*    </Panel>*/}
-                    {/*</Collapse>*/}
                 </Card>
             </div>
         );
