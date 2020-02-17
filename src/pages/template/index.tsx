@@ -13,11 +13,15 @@ import Loader from '../../components/loader';
 interface State {
 }
 
-interface Props {}
+interface Props {
+    status: string
+}
 export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('Template:constructor reached');
         super(props);
+        console.log('TEMPLATE PROPS')
+        console.log(props)
     }
 
     render() {
@@ -41,6 +45,7 @@ export default class Component extends React.Component<Props, State> {
                     <Loader
                         loading={<Spin indicator={<Icon type="loading" style={{ fontSize: 40 }} spin />} />}
                         error={<Icon type="exclamation-circle" style={{ fontSize: 40, color: '#b60005' }} />}
+                        status={this.props.status}
                     >
                         <List item={ListItem}>
                             <div key="1" />

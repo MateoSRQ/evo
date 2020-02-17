@@ -6,10 +6,12 @@ import MediaQuery from 'react-responsive'
 import { Scrollbars } from 'react-custom-scrollbars';
 import {Avatar, Icon} from 'antd';
 
-
 import Menu from '../../components/menu';
 import Sidebar from '../master/sidebar';
+import withData from '../data';
 import Template from '../../pages/template';
+
+const ManagedTemplate = withData(Template);
 
 interface State {
     bigSize: boolean
@@ -73,7 +75,11 @@ export default class Component extends React.Component<Props, State> {
                         </div>
                     </MediaQuery>
                     <div className={[style.middle].join(' ')}>
-                        <Template />
+                        <ManagedTemplate
+                            data={[
+                                {variable: 'sedes', url: "http://127.0.0.1:3333/api/v2/sedes", method: "get"}
+                            ]}
+                        />
                     </div>
                     <div className={[style.right].join(' ')}>
                         <div className={[style.container].join(' ')}>
