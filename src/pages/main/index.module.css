@@ -3,11 +3,12 @@
 @value middleWidth: 840px;
 @value titleHeight: 50px;
 @value padding: 12px;
+@value idHeight: 250px;
 
 .component {
     height: 100%;
     width: 100%;
-    background-color: #e9ebee;
+    background-color: transparent;
     display: flex;
     justify-items: center;
     justify-content: center;
@@ -28,9 +29,9 @@
     position: absolute;
     top: 0;
     width: 100%;
-    height: titleHeight;
+    height: 50px;
     z-index: 2;
-    background-color: slategray;
+    background-color: #39557e;
 }
 
 .left {
@@ -54,8 +55,60 @@
     height: calc(100% - padding);
     left: calc(padding/2);
     top: calc(padding/2);
-    /*background-color: #ffffff;*/
     position: relative;
-    /*box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);*/
 }
 
+.idContainer {
+    width: calc(100% - padding);
+    height: calc(idHeight);
+    left: calc(padding/2);
+    top: calc(padding/2);
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.idAvatar {
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25) !important;
+    border: 6px white solid !important;
+    border-radius: 50% !important;
+}
+
+.menuContainer {
+    width: calc(100% - padding);
+    height: calc(100% - padding - idHeight);
+    left: calc(padding/2);
+    top: calc(padding/2);
+    position: relative;
+}
+
+.idName {
+    font-size: 18px !important;
+    font-weight: 600;
+    font-family: 'Noto Sans', sans-serif;
+    letter-spacing: -0.15px;
+    margin-top: 6px;
+    color: #096dd9;
+}
+
+.idRole {
+    font-size: 12px !important;
+    font-weight: 600;
+    font-family: 'Noto Sans', sans-serif;
+    letter-spacing: 1.85px;
+    color: #292d26;
+    text-transform: uppercase;
+}
+
+.component :global(.ant-radio-button-wrapper) {
+    min-width: 100px !important;
+    text-align: center;
+}
+
+.component :global(.ant-collapse-header) {
+
+}

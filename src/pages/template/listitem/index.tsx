@@ -9,16 +9,16 @@ import { Card } from 'antd';
 import { Row, Col } from 'antd';
 import { Tabs, Button } from 'antd';
 import { Divider } from 'antd';
-import {
-    CollapsibleComponent,
-    CollapsibleHead,
-    CollapsibleContent
-} from "react-collapsible-component";
+import { Radio } from 'antd';
+import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from "react-collapsible-component";
 import { TreeSelect } from 'antd';
+import { Select } from 'antd';
 
 import 'antd/dist/antd.css';
 
+import Item from './item';
 
+const { Option } = Select;
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
 const { TabPane } = Tabs;
@@ -154,86 +154,138 @@ export default class Component extends React.Component<Props, State> {
                             <Tabs type="card" size="small" className={[style.tabs].join(' ')}>
                                 <TabPane tab="Visual" key="1">
                                     <div className={[style.panel].join(' ')}>
-
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
-                                        <div className={[style.well].join(' ')}>
-                                            <div className={[style.wellTitle].join(' ')}>
-                                                Visual #1
-                                            </div>
-                                            <TreeSelect {...tProps} />
-                                        </div>
+                                        <Collapse
+                                            bordered={false}
+                                            defaultActiveKey={['1']}
+                                            expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}
+                                        >
+                                            <Panel header="Visual 1" key="1">
+                                                <div className={[style.well].join(' ')}>
+                                                    <Row>
+                                                        <Col span={24}>
+                                                            <TreeSelect {...tProps} />
+                                                        </Col>
+                                                    </Row>
+                                                    <Row style={{marginTop: '10px'}}>
+                                                        <Col span={12}>
+                                                            <Radio.Group defaultValue="a" buttonStyle="solid" >
+                                                                <Radio.Button value="a">Cualquiera</Radio.Button>
+                                                                <Radio.Button value="b">Hombre</Radio.Button>
+                                                                <Radio.Button value="c">Mujer</Radio.Button>
+                                                            </Radio.Group>
+                                                        </Col>
+                                                        <Col span={12}>
+                                                            <Select
+                                                                showSearch
+                                                                style={{ width: 200 }}
+                                                                placeholder="Select a person"
+                                                                optionFilterProp="children"
+                                                                // onChange={onChange}
+                                                                // onFocus={onFocus}
+                                                                // onBlur={onBlur}
+                                                                // onSearch={onSearch}
+                                                                // filterOption={(input, option) =>
+                                                                //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                // }
+                                                            >
+                                                                <Option value="jack">Jack</Option>
+                                                                <Option value="lucy">Lucy</Option>
+                                                                <Option value="tom">Tom</Option>
+                                                            </Select>,
+                                                        </Col>
+                                                    </Row>
+                                                </div>
+                                            </Panel>
+                                            <Panel header="Visual 2" key="2">
+                                                <div className={[style.well].join(' ')}>
+                                                    <TreeSelect {...tProps} />
+                                                </div>
+                                            </Panel>
+                                            <Panel header="Visual 3" key="3">
+                                                <div className={[style.well].join(' ')}>
+                                                    <TreeSelect {...tProps} />
+                                                </div>
+                                            </Panel>
+                                        </Collapse>
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
+                                        {/*<div className={[style.well].join(' ')}>*/}
+                                        {/*    <div className={[style.wellTitle].join(' ')}>*/}
+                                        {/*        Visual #1*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect {...tProps} />*/}
+                                        {/*</div>*/}
 
 
                                     </div>
                                 </TabPane>
                                 <TabPane tab="Laboratorio" key="2">
                                     <div className={[style.panel].join(' ')}>
-                                        Visual
+                                        <Item />
                                     </div>
                                 </TabPane>
                                 <TabPane tab="Electrocardigrama" key="3">

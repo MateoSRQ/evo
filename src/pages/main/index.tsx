@@ -1,8 +1,11 @@
 import React from 'react';
 import style from './index.module.css';
 import log from 'loglevel';
+
 import MediaQuery from 'react-responsive'
 import { Scrollbars } from 'react-custom-scrollbars';
+import {Avatar, Icon} from 'antd';
+
 
 import Menu from '../../components/menu';
 import Sidebar from '../master/sidebar';
@@ -29,10 +32,13 @@ export default class Component extends React.Component<Props, State> {
 
     handleMediaQueryChange(e: any) {
         log.info('Main:handleMediaQueryChange reached');
-        console.log(e);
         this.setState({
             bigSize: e
         });
+    }
+
+    componentDidMount(): void {
+        log.info('Main:componentDidMount reached');
     }
 
     render() {
@@ -46,11 +52,22 @@ export default class Component extends React.Component<Props, State> {
                 <MediaQuery minWidth={1400} onChange={this.handleMediaQueryChange}>
                     {null}
                 </MediaQuery>
-                <div className={[style.title].join(' ')}></div>
+                <div className={[style.title].join(' ')}>
+                    <img src="/images/logo.png" style={{height: '40px', marginTop: '5px'}}/>
+                </div>
                 <div className={[style.body].join(' ')} style={{width: size + 'px'}}>
                     <MediaQuery minWidth={1400}>
                         <div className={[style.left].join(' ')}>
-                            <div className={[style.container].join(' ')}>
+                            <div className={[style.idContainer].join(' ')}>
+                                <Avatar
+                                    size={128}
+                                    className={[style.idAvatar].join(' ')}
+                                    src="images/face_co.png"
+                                />
+                                <div className={[style.idName].join(' ')}>James T. Hetfield</div>
+                                <div className={[style.idRole].join(' ')}>Administrador</div>
+                            </div>
+                            <div className={[style.menuContainer].join(' ')}>
                                 <Menu />
                             </div>
                         </div>

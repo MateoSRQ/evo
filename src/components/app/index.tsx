@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './index.module.css'
+import style from './index.module.scss'
 import log from 'loglevel';
 import  { Breakpoint, BreakpointProvider } from 'react-socks';
 
@@ -17,8 +17,14 @@ export default class Component extends React.Component<Props> {
     render() {
         log.info('App:render reached');
         return (
-            <Main />
-        );
+            <div className={[style.component].join(' ')}>
+                <div className={[style.background].join(' ')}>
+                </div>
+                <div className={[style.container].join(' ')}>
+                    <Main />
+                </div>
+            </div>
+        )
     }
 }
 
