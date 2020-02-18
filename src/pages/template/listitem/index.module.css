@@ -1,5 +1,5 @@
 .component {
-    width: calc(100% - 10px);
+    width: calc(100% - 2px);
     padding-bottom: 5px;
 }
 
@@ -126,9 +126,13 @@
 }
 
 .component :global(.ant-select-selection__choice) {
+    -webkit-user-select: none !important;
     user-select: none !important;
-    width: 313px !important;
+    width: 306px !important;
     text-align: center !important;
+    background-color: #678ed8;
+    color: white;
+    font-weight: normal !important;
 }
 
 .component :global(.ant-collapse-header) {

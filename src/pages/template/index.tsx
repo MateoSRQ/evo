@@ -24,6 +24,10 @@ export default class Component extends React.Component<Props, State> {
         console.log(props)
     }
 
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
+        log.info('Template:componentDidUpdate reached');
+    }
+
     render() {
         log.info('Template:render reached');
         return (

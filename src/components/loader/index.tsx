@@ -28,6 +28,15 @@ export default class Component extends React.Component<Props, State> {
         };
     }
 
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
+        log.info('Loader:componentDidUpdate reached');
+        if (this.props !== prevProps) {
+            this.setState({
+                status: this.props.status?this.props.status:'loaded'
+            })
+        }
+    }
+
     render() {
         log.info('Loader:render reached');
         let loading =  <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} />;
@@ -39,7 +48,7 @@ export default class Component extends React.Component<Props, State> {
 
         switch (this.state.status) {
             case 'loaded':
-                load = null;
+                load = <div className={[style.leaving].join(' ')}>{loading}</div>
                 break;
             case 'loading':
                 load = <div className={[style.loader].join(' ')}>{loading}</div>;

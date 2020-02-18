@@ -32,13 +32,13 @@ export default function withData(WrappedComponent: any) {
                         method: datum.method,
                         url: datum.url
                 }));
-                Promise.all(promiseData).then(values => {
-                    this.setState({
-                        data: values
-                    });
-
-                })
             }
+            Promise.all(promiseData).then(values => {
+                this.setState({
+                    status: 'loaded',
+                    data: values
+                });
+            })
         }
 
         componentWillUnmount() {

@@ -151,7 +151,7 @@ export default class Component extends React.Component<Props, State> {
                     <CollapsibleComponent>
                         <CollapsibleContent className={[style.collapsible].join(' ')}>
                             <Divider />
-                            <Tabs type="card" size="small" className={[style.tabs].join(' ')}>
+                            <Tabs type="card" className={[style.tabs].join(' ')}>
                                 <TabPane tab="Visual" key="1">
                                     <div className={[style.panel].join(' ')}>
                                         <Collapse

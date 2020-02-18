@@ -6,11 +6,14 @@
 
 .component * {
     font-family: 'Noto Sans', sans-serif;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Muli', sans-serif;
-    font-family: 'Fira Sans', sans-serif;
-    font-family: 'Quicksand', sans-serif;
-    font-family: 'Cabin', sans-serif;
-    font-size: 14px !important;
+    /* font-family: 'Poppins', sans-serif; */
+    /* font-family: 'Muli', sans-serif; */
+    /* font-family: 'Fira Sans', sans-serif; */
+    /* font-family: 'Quicksand', sans-serif; */
+    /* font-family: 'Cabin', sans-serif; */
+    font-size: 12px !important;
     font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    /* text-shadow: .1px 0 0 currentColor; */
+
 }
