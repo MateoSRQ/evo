@@ -26,7 +26,9 @@ export default function withData(WrappedComponent: any) {
         componentDidMount() {
             log.info('Data:componentDidMount reached');
             let promiseData = [];
+            let variables: string[] = [];
             for (let datum of this.props.data) {
+                variables.push(datum.variable);
                 promiseData.push(
                     axios({
                         method: datum.method,
@@ -34,9 +36,14 @@ export default function withData(WrappedComponent: any) {
                 }));
             }
             Promise.all(promiseData).then(values => {
+                let vals: any = {};
+                for (let value in values) {
+                    let v: string = variables[value]
+                    vals[v] = values[value]
+                }
                 this.setState({
                     status: 'loaded',
-                    data: values
+                    ...vals
                 });
             })
         }
@@ -49,6 +56,8 @@ export default function withData(WrappedComponent: any) {
 
         render() {
             let {data, ...props} = this.props;
+            console.log('WRAPPER STATE')
+            console.log(this.state);
             return <WrappedComponent {...props} {...this.state} />;
         }
     };

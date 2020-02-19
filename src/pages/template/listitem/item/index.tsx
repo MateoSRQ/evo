@@ -162,7 +162,7 @@ class Item extends React.Component<ItemProps> {
     render() {
         log.info('Item:render reached');
         return (
-            <div className={[style.component].join(' ')}>
+            <div className={[style.component].join(' ')} >
                 <div className={[style.well].join(' ')}>
                     <Row>
                         <Col span={24}>

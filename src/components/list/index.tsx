@@ -12,7 +12,6 @@ interface Props {
     children?: any
 }
 
-
 export default class Component extends React.Component<Props> {
     constructor(props: Props) {
         log.info('List:constructor reached');
@@ -22,12 +21,14 @@ export default class Component extends React.Component<Props> {
 
     render() {
         log.info('List:render reached');
-
-        let children = this.props?.children.map((child: any, index: any) => {
-            return (
-                <this.props.item props={child.props} key={index} />
-            )
-        })
+        let children = null;
+        if (this.props?.children) {
+            children = this.props?.children.map((child: any) => {
+                return (
+                    <this.props.item {...child.props} />
+                )
+            })
+        }
 
         return (
             <Scrollbars className={[style.component].join(' ')}>
