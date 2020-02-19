@@ -23,9 +23,9 @@ export default class Component extends React.Component<Props> {
         log.info('List:render reached');
         let children = null;
         if (this.props?.children) {
-            children = this.props?.children.map((child: any) => {
+            children = this.props?.children.map((child: any, index: number) => {
                 return (
-                    <this.props.item {...child.props} />
+                    <this.props.item {...child.props} key={index} />
                 )
             })
         }

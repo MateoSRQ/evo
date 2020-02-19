@@ -154,7 +154,7 @@ export default class Component extends React.Component<Props, State> {
                         <Col span={6}>
                         </Col>
                     </Row>
-                    <CollapsibleComponent>
+                    <CollapsibleComponent  name={this.props._id}>
                         <CollapsibleContent className={[style.collapsible].join(' ')}>
                             <Divider />
                             <Tabs type="card" className={[style.tabs].join(' ')}>
@@ -217,7 +217,7 @@ export default class Component extends React.Component<Props, State> {
                                 </TabPane>
                                 <TabPane tab="Laboratorio" key="2">
                                     <div className={[style.panel].join(' ')}>
-                                        Hola
+                                        <Item />
                                     </div>
                                 </TabPane>
                                 <TabPane tab="Electrocardigrama" key="3">
@@ -243,7 +243,7 @@ export default class Component extends React.Component<Props, State> {
                             </Tabs>
                         </CollapsibleContent>
                         <CollapsibleHead
-                            isExpanded={true}
+                            isExpanded={false}
                             showContentAboveButton={true}
                             className={[style.centered].join(' ')}
                         >

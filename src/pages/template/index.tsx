@@ -51,7 +51,7 @@ export default class Component extends React.Component<Props, State> {
                 console.log('sede');
                 console.log(sede);
                 return (
-                    <div {...sede} key={sede._id}/>
+                    <div {...sede} key={index}/>
                 )
 
             })
