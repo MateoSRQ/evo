@@ -153,10 +153,17 @@ const tProps = {
 };
 
 
-class Item extends React.Component<ItemProps> {
-    constructor(props: ItemProps) {
+interface Props {
+    data?: any
+}
+
+
+export default class Component extends React.Component<Props> {
+    constructor(props: Props) {
         log.info('Item:constructor reached');
         super(props);
+        console.log('ITEM')
+        console.log(this.props)
     }
 
     render() {
@@ -198,31 +205,6 @@ class Item extends React.Component<ItemProps> {
                         </Col>
                     </Row>
                 </div>
-            </div>
-        );
-    }
-}
-
-interface Props {
-}
-
-
-export default class Component extends React.Component<Props> {
-    constructor(props: Props) {
-        log.info('Item:constructor reached');
-        super(props);
-    }
-
-    render() {
-        log.info('Item:render reached');
-        return (
-            <div className={[style.component].join(' ')}>
-                <Table
-                    columns={columns}
-                    dataSource={data}
-                    expandedRowRender={record => <Item />}
-                    size="small"
-                />
             </div>
         );
     }

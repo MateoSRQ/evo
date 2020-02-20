@@ -26,6 +26,7 @@ export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('Template:constructor reached');
         super(props);
+
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
@@ -36,8 +37,6 @@ export default class Component extends React.Component<Props, State> {
                     sedes: jsonpack.unpack(this.props.sedes.data),
                     examenes: this.props.examenes.data
                 });
-                console.log('EXAMENES');
-                console.log(this.props.examenes.data);
             }
         }
     }
@@ -45,14 +44,16 @@ export default class Component extends React.Component<Props, State> {
     render() {
         log.info('Template:render reached');
         let items = null;
+        let examenes = 'WABAKI';
+
         if (this.state?.sedes && this.state?.examenes) {
             items = this.state.sedes.map((sede: any, index: number) => {
                 return (
-                    <div {...sede} key={index}/>
+                    <div {...sede} key={index} />
                 )
             })
+            examenes = this.state.examenes
         }
-
 
         return (
             <div className={[style.component].join(' ')}>
@@ -75,7 +76,7 @@ export default class Component extends React.Component<Props, State> {
                         error={<Icon type="exclamation-circle" style={{fontSize: 40, color: '#b60005'}}/>}
                         status={this.props.status}
                     >
-                        <List item={ListItem}>
+                        <List item={ListItem} data={examenes}>
                             {items}
                         </List>
                     </Loader>

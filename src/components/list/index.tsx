@@ -8,27 +8,47 @@ import 'antd/dist/antd.css';
 log.setLevel('warn');
 
 interface Props {
-    item: any,
+    item: any
     children?: any
+    data?: any
 }
 
-export default class Component extends React.Component<Props> {
+interface State {
+    data: any
+}
+
+export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('List:constructor reached');
         super(props);
-        console.log(typeof props.item);
+        this.state = {
+            data: null
+        }
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
+        if (prevProps != this.props) {
+            this.setState({data: this.props.data})
+        }
     }
 
     render() {
         log.info('List:render reached');
         let children = null;
-        if (this.props?.children) {
+        if (this.props?.children && this.state.data) {
             children = this.props?.children.map((child: any, index: number) => {
                 return (
-                    <this.props.item {...child.props} key={index} />
+                    <this.props.item
+                        {...child.props}
+                        key={index}
+                        data={this.state.data}
+                    />
                 )
             })
         }
+
+        console.log('CHILDREN')
+        console.log(children)
 
         return (
             <Scrollbars className={[style.component].join(' ')}>

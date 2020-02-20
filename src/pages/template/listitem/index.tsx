@@ -33,7 +33,8 @@ interface Props {
     _id: string
     nombre: string
     descripcion: string
-    nodos: any
+    nodos: any,
+    data: any
 }
 export default class Component extends React.Component<Props, State> {
 
@@ -44,6 +45,11 @@ export default class Component extends React.Component<Props, State> {
 
     render() {
         log.info('Template:render reached');
+
+        console.log('TREE')
+        console.log(this.props.data)
+
+
         const treeData = [
             {
                 title: 'Node1',
@@ -142,7 +148,6 @@ export default class Component extends React.Component<Props, State> {
         for (let nodo in this.props.nodos) {
             tabs.push(nodo);
         }
-
         tabs = tabs.map((tab, index) => {
             let panels = this.props.nodos[tab].map((panel:any, index: number) => {
                 return (
@@ -151,47 +156,16 @@ export default class Component extends React.Component<Props, State> {
                         //defaultActiveKey={['1']}
                         expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}
                     >
-                        <Panel header={panel.codigo} key={index.toString()}>
-                        <div className={[style.well].join(' ')}>
-                            <Row>
-                                <Col span={24}>
-                                    <TreeSelect {...tProps} />
-                                </Col>
-                            </Row>
-                            <Row style={{marginTop: '10px'}}>
-                                <Col span={12}>
-                                    <Radio.Group defaultValue="a" buttonStyle="solid">
-                                        <Radio.Button value="a">N/D</Radio.Button>
-                                        <Radio.Button value="b">Hombre</Radio.Button>
-                                        <Radio.Button value="c">Mujer</Radio.Button>
-                                    </Radio.Group>
-                                </Col>
-                                <Col span={12}>
-                                    <Select
-                                        showSearch
-                                        style={{width: 200}}
-                                        placeholder="Select a person"
-                                        optionFilterProp="children"
-                                        // onChange={onChange}
-                                        // onFocus={onFocus}
-                                        // onBlur={onBlur}
-                                        // onSearch={onSearch}
-                                        // filterOption={(input, option) =>
-                                        //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                        // }
-                                    >
-                                        <Option value="jack">Jack</Option>
-                                        <Option value="lucy">Lucy</Option>
-                                        <Option value="tom">Tom</Option>
-                                    </Select>
-                                </Col>
-                            </Row>
-                        </div>
-                    </Panel>
+                        <Panel
+                            header={<div style={{color: '#ff0000'}}>{panel.codigo}</div>}
+                            key={index.toString()}
+                        >
+                            <Item />
+                        </Panel>
                     </Collapse>
                 )
             });
-            console.log(panels);
+
             return (
                 <TabPane tab={tab} key={index.toString()}>
                     <div className={[style.panel].join(' ')}>
