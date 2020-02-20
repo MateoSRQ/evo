@@ -3,10 +3,9 @@ import style from './index.module.css';
 import log from 'loglevel';
 import axios from 'axios';
 
-
 export default function withData(WrappedComponent: any) {
     interface Props {
-        data: [any]
+        data: any
     }
     interface State {
         status: string,

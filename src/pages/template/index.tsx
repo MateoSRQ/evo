@@ -13,49 +13,46 @@ import Loader from '../../components/loader';
 
 interface State {
     sedes: any
+    examenes: any
 }
 
 interface Props {
     status: string
     sedes: any
+    examenes: any
 }
 
 export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('Template:constructor reached');
         super(props);
-        console.log('XXX')
-        console.log(this.props)
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
         log.info('Template:componentDidUpdate reached');
         if (this.props !== prevProps) {
-            console.log('TEMPLATE STATE')
-            if (this.props.sedes?.data) {
-                this.setState({sedes: jsonpack.unpack(this.props.sedes.data)})
-                console.log(jsonpack.unpack(this.props.sedes.data))
+            if (this.props.sedes?.data && this.props.examenes?.data) {
+                this.setState({
+                    sedes: jsonpack.unpack(this.props.sedes.data),
+                    examenes: this.props.examenes.data
+                });
+                console.log('EXAMENES');
+                console.log(this.props.examenes.data);
             }
-
         }
     }
 
     render() {
         log.info('Template:render reached');
-        console.log('render')
         let items = null;
-        if (this.state?.sedes) {
-            console.log('?')
-            console.log(this.state.sedes)
+        if (this.state?.sedes && this.state?.examenes) {
             items = this.state.sedes.map((sede: any, index: number) => {
-                console.log('sede');
-                console.log(sede);
                 return (
                     <div {...sede} key={index}/>
                 )
-
             })
         }
+
 
         return (
             <div className={[style.component].join(' ')}>
@@ -82,7 +79,6 @@ export default class Component extends React.Component<Props, State> {
                             {items}
                         </List>
                     </Loader>
-
                 </div>
             </div>
         );

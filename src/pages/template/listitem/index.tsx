@@ -32,15 +32,15 @@ interface State {
 interface Props {
     _id: string
     nombre: string
+    descripcion: string
+    nodos: any
 }
 export default class Component extends React.Component<Props, State> {
 
     constructor(props: Props) {
         log.info('Template:constructor reached');
         super(props);
-
     }
-
 
     render() {
         log.info('Template:render reached');
@@ -138,18 +138,77 @@ export default class Component extends React.Component<Props, State> {
             },
         };
 
-        console.log('TEMPLATE')
-        console.log(this.props)
+        let tabs:any[] = [];
+        for (let nodo in this.props.nodos) {
+            tabs.push(nodo);
+        }
+
+        tabs = tabs.map((tab, index) => {
+            let panels = this.props.nodos[tab].map((panel:any, index: number) => {
+                return (
+                    <Collapse
+                        bordered={false}
+                        //defaultActiveKey={['1']}
+                        expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}
+                    >
+                        <Panel header={panel.codigo} key={index.toString()}>
+                        <div className={[style.well].join(' ')}>
+                            <Row>
+                                <Col span={24}>
+                                    <TreeSelect {...tProps} />
+                                </Col>
+                            </Row>
+                            <Row style={{marginTop: '10px'}}>
+                                <Col span={12}>
+                                    <Radio.Group defaultValue="a" buttonStyle="solid">
+                                        <Radio.Button value="a">N/D</Radio.Button>
+                                        <Radio.Button value="b">Hombre</Radio.Button>
+                                        <Radio.Button value="c">Mujer</Radio.Button>
+                                    </Radio.Group>
+                                </Col>
+                                <Col span={12}>
+                                    <Select
+                                        showSearch
+                                        style={{width: 200}}
+                                        placeholder="Select a person"
+                                        optionFilterProp="children"
+                                        // onChange={onChange}
+                                        // onFocus={onFocus}
+                                        // onBlur={onBlur}
+                                        // onSearch={onSearch}
+                                        // filterOption={(input, option) =>
+                                        //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                        // }
+                                    >
+                                        <Option value="jack">Jack</Option>
+                                        <Option value="lucy">Lucy</Option>
+                                        <Option value="tom">Tom</Option>
+                                    </Select>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Panel>
+                    </Collapse>
+                )
+            });
+            console.log(panels);
+            return (
+                <TabPane tab={tab} key={index.toString()}>
+                    <div className={[style.panel].join(' ')}>
+                        {panels}
+                    </div>
+                </TabPane>
+            )
+        })
 
         return (
-
             <div className={[style.component].join(' ')} key={this.props._id}>
                 <Card className={[style.card].join(' ')}>
                     <Row>
                         <Col span={18}>
                             <div className={[style.prefix].join(' ')}>{this.props._id}</div>
                             <div className={[style.title].join(' ')}>{this.props.nombre}</div>
-                            <div className={[style.subTitle].join(' ')}>Sede La Victoria, Calle San Blas 312, La Victoria</div>
+                            <div className={[style.subTitle].join(' ')}>{this.props.descripcion}</div>
                         </Col>
                         <Col span={6}>
                         </Col>
@@ -158,88 +217,7 @@ export default class Component extends React.Component<Props, State> {
                         <CollapsibleContent className={[style.collapsible].join(' ')}>
                             <Divider />
                             <Tabs type="card" className={[style.tabs].join(' ')}>
-                                <TabPane tab="Visual" key="1">
-                                    <div className={[style.panel].join(' ')}>
-                                        {/*<Collapse*/}
-                                        {/*    bordered={false}*/}
-                                        {/*    defaultActiveKey={['1']}*/}
-                                        {/*    expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}*/}
-                                        {/*>*/}
-                                        {/*    <Panel header="Visual 1" key="1">*/}
-                                        {/*        <div className={[style.well].join(' ')}>*/}
-                                        {/*            <Row>*/}
-                                        {/*                <Col span={24}>*/}
-                                        {/*                    <TreeSelect {...tProps} />*/}
-                                        {/*                </Col>*/}
-                                        {/*            </Row>*/}
-                                        {/*            <Row style={{marginTop: '10px'}}>*/}
-                                        {/*                <Col span={12}>*/}
-                                        {/*                    <Radio.Group defaultValue="a" buttonStyle="solid" >*/}
-                                        {/*                        <Radio.Button value="a">Cualquiera</Radio.Button>*/}
-                                        {/*                        <Radio.Button value="b">Hombre</Radio.Button>*/}
-                                        {/*                        <Radio.Button value="c">Mujer</Radio.Button>*/}
-                                        {/*                    </Radio.Group>*/}
-                                        {/*                </Col>*/}
-                                        {/*                <Col span={12}>*/}
-                                        {/*                    <Select*/}
-                                        {/*                        showSearch*/}
-                                        {/*                        style={{ width: 200 }}*/}
-                                        {/*                        placeholder="Select a person"*/}
-                                        {/*                        optionFilterProp="children"*/}
-                                        {/*                        // onChange={onChange}*/}
-                                        {/*                        // onFocus={onFocus}*/}
-                                        {/*                        // onBlur={onBlur}*/}
-                                        {/*                        // onSearch={onSearch}*/}
-                                        {/*                        // filterOption={(input, option) =>*/}
-                                        {/*                        //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0*/}
-                                        {/*                        // }*/}
-                                        {/*                    >*/}
-                                        {/*                        <Option value="jack">Jack</Option>*/}
-                                        {/*                        <Option value="lucy">Lucy</Option>*/}
-                                        {/*                        <Option value="tom">Tom</Option>*/}
-                                        {/*                    </Select>,*/}
-                                        {/*                </Col>*/}
-                                        {/*            </Row>*/}
-                                        {/*        </div>*/}
-                                        {/*    </Panel>*/}
-                                        {/*    <Panel header="Visual 2" key="2">*/}
-                                        {/*        <div className={[style.well].join(' ')}>*/}
-                                        {/*            <TreeSelect {...tProps} />*/}
-                                        {/*        </div>*/}
-                                        {/*    </Panel>*/}
-                                        {/*    <Panel header="Visual 3" key="3">*/}
-                                        {/*        <div className={[style.well].join(' ')}>*/}
-                                        {/*            <TreeSelect {...tProps} />*/}
-                                        {/*        </div>*/}
-                                        {/*    </Panel>*/}
-                                        {/*</Collapse>*/}
-                                    </div>
-                                </TabPane>
-                                <TabPane tab="Laboratorio" key="2">
-                                    <div className={[style.panel].join(' ')}>
-                                        <Item />
-                                    </div>
-                                </TabPane>
-                                <TabPane tab="Electrocardigrama" key="3">
-                                    <div className={[style.panel].join(' ')}>
-                                        Visual
-                                    </div>
-                                </TabPane>
-                                <TabPane tab="Consultorio" key="4">
-                                    <div className={[style.panel].join(' ')}>
-                                        Visual
-                                    </div>
-                                </TabPane>
-                                <TabPane tab="Psicología" key="5">
-                                    <div className={[style.panel].join(' ')}>
-                                        Visual
-                                    </div>
-                                </TabPane>
-                                <TabPane tab="Administrativo" key="6">
-                                    <div className={[style.panel].join(' ')}>
-                                        Visual
-                                    </div>
-                                </TabPane>
+                                {tabs}
                             </Tabs>
                         </CollapsibleContent>
                         <CollapsibleHead
@@ -257,4 +235,56 @@ export default class Component extends React.Component<Props, State> {
 }
 
 
-
+{/*<Collapse*/}
+{/*    bordered={false}*/}
+{/*    defaultActiveKey={['1']}*/}
+{/*    expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}*/}
+{/*>*/}
+{/*    <Panel header="Visual 1" key="1">*/}
+{/*        <div className={[style.well].join(' ')}>*/}
+{/*            <Row>*/}
+{/*                <Col span={24}>*/}
+{/*                    <TreeSelect {...tProps} />*/}
+{/*                </Col>*/}
+{/*            </Row>*/}
+{/*            <Row style={{marginTop: '10px'}}>*/}
+{/*                <Col span={12}>*/}
+{/*                    <Radio.Group defaultValue="a" buttonStyle="solid" >*/}
+{/*                        <Radio.Button value="a">Cualquiera</Radio.Button>*/}
+{/*                        <Radio.Button value="b">Hombre</Radio.Button>*/}
+{/*                        <Radio.Button value="c">Mujer</Radio.Button>*/}
+{/*                    </Radio.Group>*/}
+{/*                </Col>*/}
+{/*                <Col span={12}>*/}
+{/*                    <Select*/}
+{/*                        showSearch*/}
+{/*                        style={{ width: 200 }}*/}
+{/*                        placeholder="Select a person"*/}
+{/*                        optionFilterProp="children"*/}
+{/*                        // onChange={onChange}*/}
+{/*                        // onFocus={onFocus}*/}
+{/*                        // onBlur={onBlur}*/}
+{/*                        // onSearch={onSearch}*/}
+{/*                        // filterOption={(input, option) =>*/}
+{/*                        //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0*/}
+{/*                        // }*/}
+{/*                    >*/}
+{/*                        <Option value="jack">Jack</Option>*/}
+{/*                        <Option value="lucy">Lucy</Option>*/}
+{/*                        <Option value="tom">Tom</Option>*/}
+{/*                    </Select>,*/}
+{/*                </Col>*/}
+{/*            </Row>*/}
+{/*        </div>*/}
+{/*    </Panel>*/}
+{/*    <Panel header="Visual 2" key="2">*/}
+{/*        <div className={[style.well].join(' ')}>*/}
+{/*            <TreeSelect {...tProps} />*/}
+{/*        </div>*/}
+{/*    </Panel>*/}
+{/*    <Panel header="Visual 3" key="3">*/}
+{/*        <div className={[style.well].join(' ')}>*/}
+{/*            <TreeSelect {...tProps} />*/}
+{/*        </div>*/}
+{/*    </Panel>*/}
+{/*</Collapse>*/}

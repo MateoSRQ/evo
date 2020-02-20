@@ -77,7 +77,8 @@ export default class Component extends React.Component<Props, State> {
                     <div className={[style.middle].join(' ')}>
                         <ManagedTemplate
                             data={[
-                                {variable: 'sedes', url: "http://127.0.0.1:3333/api/v2/sedes", method: "get"}
+                                {variable: 'sedes',     url: "http://127.0.0.1:3333/api/v2/sedes",      method: "get"},
+                                {variable: 'examenes',  url: "http://127.0.0.1:3333/api/v2/examenes",   method: "get"}
                             ]}
                         />
                     </div>
