@@ -124,6 +124,10 @@ export default class Component extends React.Component<Props, State> {
         for (let nodo in this.props.nodos) {
             tabs.push(nodo);
         }
+
+        console.log('TABS')
+        console.log(tabs)
+
         tabs = tabs.map((tab, index) => {
             let panels = this.props.nodos[tab].map((panel:any, index: number) => {
                 return (
@@ -135,6 +139,11 @@ export default class Component extends React.Component<Props, State> {
                             header={(
                                 <div>
                                     <div className={[style.header].join(' ')}>{panel.codigo}</div>
+                                    <ButtonGroup className={[style.group].join(' ')}>
+                                        <Button icon="plus-circle" />
+                                        <Button icon="minus-circle" />
+                                        <Button icon="copy" />
+                                    </ButtonGroup>
                                 </div>
                             )}
                             key={index.toString()}
@@ -186,7 +195,6 @@ export default class Component extends React.Component<Props, State> {
 
                                         <XAxis dataKey="name" style={{fontSize: '8px !important'}}/>
                                         <YAxis hide/>
-
                                         <Bar dataKey="pv"  stackId="a" fill="#5e4fa2"  />
                                         <Bar dataKey="uv"  stackId="a"  fill="#3288bd" />
                                         <Bar dataKey="amt"   stackId="a" fill="#66c2a5" />

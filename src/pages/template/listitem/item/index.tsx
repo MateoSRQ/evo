@@ -206,6 +206,55 @@ export default class Component extends React.Component<Props> {
                                 <Option value="tom">Southern Cooper Corporation</Option>
                             </Select>,
                         </Col>
+
+                    </Row>
+
+
+                    <Row style={{marginTop: '10px'}}>
+                        <Col span={11}>
+                            <Select
+                                showSearch
+                                style={{ width: '100%' }}
+                                placeholder="Área..."
+                                optionFilterProp="children"
+                                // onChange={onChange}
+                                // onFocus={onFocus}
+                                // onBlur={onBlur}
+                                // onSearch={onSearch}
+                                // filterOption={(input, option) =>
+                                //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                // }
+                            >
+                                <Option value="jack">Área 1 </Option>
+                                <Option value="lucy">Área 2 </Option>
+                                <Option value="tom"> Área 3 </Option>
+                                <Option value="jack">Área 4 </Option>
+                                <Option value="lucy">Área 5 </Option>
+                                <Option value="tom"> Área 6 </Option>
+                            </Select>,
+                        </Col>
+                        <Col span={1} />
+
+                        <Col span={12}>
+                            <Select
+                                showSearch
+                                style={{ width: '100%' }}
+                                placeholder="Piso..."
+                                optionFilterProp="children"
+                                // onChange={onChange}
+                                // onFocus={onFocus}
+                                // onBlur={onBlur}
+                                // onSearch={onSearch}
+                                // filterOption={(input, option) =>
+                                //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                // }
+                            >
+                                <Option value="jack">Piso 1</Option>
+                                <Option value="lucy">Piso 2</Option>
+                                <Option value="tom">Piso 3</Option>
+                            </Select>,
+                        </Col>
+
                     </Row>
                 </div>
             </div>
