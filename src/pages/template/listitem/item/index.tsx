@@ -3,8 +3,10 @@ import style from './index.module.css'
 import log from 'loglevel';
 
 import 'antd/dist/antd.css';
-import {Col, Radio, Row, Select, Table, TreeSelect} from 'antd';
+import {Col, Icon, Radio, Row, Select, Table, TreeSelect} from 'antd';
 import { Switch } from 'antd';
+import { Carousel } from 'antd';
+import {BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 log.setLevel('warn');
 
@@ -12,158 +14,78 @@ const { SHOW_PARENT } = TreeSelect;
 const { Option } = Select;
 
 
-const columns = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-    },
-    {
-        title: 'Age',
-        dataIndex: 'age',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-    },
-    {
-        title: 'Accion',
-        dataIndex: 'address',
-        render: (age: any) => {
-            return <Switch size="small" defaultChecked />
-        }
-
-    }
-];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
-];
-
 interface ItemProps {
 }
-
-const treeData = [
-    {
-        title: 'Node1',
-        value: '0-0',
-        key: '0-0',
-        children: [
-            {
-                title: 'Child Node1',
-                value: '0-0-0',
-                key: '0-0-0',
-            },
-        ],
-    },
-    {
-        title: 'Node2',
-        value: '0-1',
-        key: '0-1',
-        children: [
-            {
-                title: 'Child Node3',
-                value: '0-1-0',
-                key: '0-1-0',
-            },
-            {
-                title: 'Child Node4',
-                value: '0-1-1',
-                key: '0-1-1',
-            },
-            {
-                title: 'Child Node5',
-                value: '0-1-2',
-                key: '0-1-2',
-            },
-        ],
-    },
-    {
-        title: 'Node3',
-        value: '0-2',
-        key: '0-2',
-        children: [
-            {
-                title: 'Child Node3',
-                value: '0-2-0',
-                key: '0-2-0',
-            },
-            {
-                title: 'Child Node4',
-                value: '0-2-1',
-                key: '0-2-1',
-            },
-            {
-                title: 'Child Node5',
-                value: '0-2-2',
-                key: '0-2-2',
-            },
-        ],
-    },
-    {
-        title: 'Node4',
-        value: '0-3',
-        key: '0-3',
-        children: [
-            {
-                title: 'Child Node3',
-                value: '0-3-0',
-                key: '0-3-0',
-            },
-            {
-                title: 'Child Node4',
-                value: '0-3-1',
-                key: '0-3-1',
-            },
-            {
-                title: 'Child Node5',
-                value: '0-3-2',
-                key: '0-3-2',
-            },
-        ],
-    },
-
-];
-const tProps = {
-    treeData,
-    // value: this.state.value,
-    // onChange: this.onChange,
-    treeCheckable: true,
-    showCheckedStrategy: SHOW_PARENT,
-    searchPlaceholder: 'Please select',
-    maxTagCount: 3,
-    style: {
-        width: '100%',
-    },
-};
-
 
 interface Props {
     data?: any
 }
 
+const data = [
+    {
+        name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+    },
+    {
+        name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+    },
+    {
+        name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
+    },
+    {
+        name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
+    },
+    {
+        name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
+    },
+    {
+        name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
+    },
+    {
+        name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
+    },
+];
+const data2 = [
+    {
+        name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+    },
+    {
+        name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+    },
+    {
+        name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
+    },
+    {
+        name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
+    },
+    {
+        name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
+    },
+    {
+        name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
+    },
+    {
+        name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
+    },
+];
 
 export default class Component extends React.Component<Props> {
+
+    protected tProps: any
+
     constructor(props: Props) {
         log.info('Item:constructor reached');
         super(props);
         console.log('ITEM')
         console.log(this.props)
+        this.tProps  = {
+            treeData: this.props.data.tree,
+            style: { width: '100%' },
+            dropdownStyle: { maxHeight: 400, overflow: 'auto' },
+            treeCheckable: true,
+            showCheckedStrategy: SHOW_PARENT,
+            searchPlaceholder: 'Seleccionar prestaciones...',
+            maxTagCount: 10,
+        };
     }
 
     render() {
@@ -171,15 +93,96 @@ export default class Component extends React.Component<Props> {
         return (
             <div className={[style.component].join(' ')} >
                 <div className={[style.well].join(' ')}>
-                    <Row>
+                    <Row className={[style.carousel].join(' ')}>
                         <Col span={24}>
-                            <TreeSelect {...tProps} />
+                            <Carousel >
+                                <div className={[style.slide].join(' ')}>
+                                    <BarChart
+                                        width={682}
+                                        height={250}
+                                        data={data}
+                                        margin={{
+                                            top: 5, right: 30, left: 20, bottom: 55,
+                                        }}
+                                    >
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="pv" fill="#8884d8" />
+                                        <Bar dataKey="uv" fill="#82ca9d" />
+                                    </BarChart>
+                                </div>
+                                <div className={[style.slide].join(' ')}>
+                                    <BarChart
+                                        width={682}
+                                        height={250}
+                                        data={data2}
+                                        margin={{
+                                            top: 20, right: 30, left: 20, bottom: 55,
+                                        }}
+                                    >
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+                                        <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+                                    </BarChart>
+                                </div>
+                                <div className={[style.slide].join(' ')}>
+                                    <BarChart
+                                        width={682}
+                                        height={250}
+                                        data={data}
+                                        margin={{
+                                            top: 5, right: 30, left: 20, bottom: 55,
+                                        }}
+                                    >
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="pv" fill="#8884d8" />
+                                        <Bar dataKey="uv" fill="#82ca9d" />
+                                    </BarChart>
+                                </div>
+                                <div className={[style.slide].join(' ')}>
+                                    <BarChart
+                                        width={682}
+                                        height={250}
+                                        data={data2}
+                                        margin={{
+                                            top: 20, right: 30, left: 20, bottom: 55,
+                                        }}
+                                    >
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+                                        <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+                                    </BarChart>
+                                </div>
+                            </Carousel>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={18}>
+                            <TreeSelect {...this.tProps} showSearch/>
+                        </Col>
+                        <Col span={6} className={[style.switch].join(' ')}>
+                            Estado:    <Switch size="small"  />
                         </Col>
                     </Row>
                     <Row style={{marginTop: '10px'}}>
                         <Col span={12}>
                             <Radio.Group defaultValue="a" buttonStyle="solid" >
-                                <Radio.Button value="a">Cualquiera</Radio.Button>
+                                <Radio.Button value="a">N/D</Radio.Button>
                                 <Radio.Button value="b">Hombre</Radio.Button>
                                 <Radio.Button value="c">Mujer</Radio.Button>
                             </Radio.Group>
@@ -187,8 +190,8 @@ export default class Component extends React.Component<Props> {
                         <Col span={12}>
                             <Select
                                 showSearch
-                                style={{ width: 200 }}
-                                placeholder="Select a person"
+                                style={{ width: '100%' }}
+                                placeholder="Seleccione empresa..."
                                 optionFilterProp="children"
                                 // onChange={onChange}
                                 // onFocus={onFocus}
@@ -198,9 +201,9 @@ export default class Component extends React.Component<Props> {
                                 //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                 // }
                             >
-                                <Option value="jack">Jack</Option>
-                                <Option value="lucy">Lucy</Option>
-                                <Option value="tom">Tom</Option>
+                                <Option value="jack">Telefónica del Perú S.A.A.</Option>
+                                <Option value="lucy">Banco de Comercio del Perú</Option>
+                                <Option value="tom">Southern Cooper Corporation</Option>
                             </Select>,
                         </Col>
                     </Row>

@@ -11,9 +11,27 @@
     /* font-family: 'Fira Sans', sans-serif; */
     /* font-family: 'Quicksand', sans-serif; */
     /* font-family: 'Cabin', sans-serif; */
-    font-size: 12px !important;
+    font-size: 11px !important;
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
     /* text-shadow: .1px 0 0 currentColor; */
 
+}
+
+.switch {
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 7px;
+}
+
+.slide {
+
+}
+
+.carousel {
+    padding-bottom: 10px;
+}
+
+.component :global(.slick-dots) li button {
+    background-color: #678ed8;
 }

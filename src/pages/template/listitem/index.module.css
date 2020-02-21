@@ -128,11 +128,12 @@
 .component :global(.ant-select-selection__choice) {
     -webkit-user-select: none !important;
     user-select: none !important;
-    width: 306px !important;
+    width: calc(100% - 8px) !important;
     text-align: center !important;
-    background-color: #678ed8;
+    background-color: #39557e;
     color: white;
     font-weight: normal !important;
+    font-family: 'Noto Sans', sans-serif !important;
 }
 
 .component :global(.ant-collapse-header) {
@@ -145,4 +146,34 @@
     font-size: 13px !important;
     font-weight: 600;
     text-transform: uppercase;
+}
+
+.header {
+    font-family: 'Noto Sans', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+    /* font-family: 'Muli', sans-serif; */
+    /* font-family: 'Fira Sans', sans-serif; */
+    /* font-family: 'Quicksand', sans-serif; */
+    /* font-family: 'Cabin', sans-serif; */
+    font-size: 13px !important;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.component :global(.slick-dots) li button {
+    background-color: #678ed8;
+}
+
+
+.carousel {
+
+    text-align: center;
+    width: 765px;
+    height: 180px;
+
+}
+
+.component :global(.recharts-text.recharts-cartesian-axis-tick-value) tspan {
+    font-size: 9px !important;
+    font-family: 'Noto Sans' !important;
 }

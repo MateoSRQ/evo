@@ -4,7 +4,7 @@ import log from 'loglevel';
 
 import { Scrollbars } from 'react-custom-scrollbars';
 
-import { Collapse, Icon } from 'antd';
+import {Carousel, Collapse, Icon} from 'antd';
 import { Card } from 'antd';
 import { Row, Col } from 'antd';
 import { Tabs, Button } from 'antd';
@@ -13,10 +13,14 @@ import { Radio } from 'antd';
 import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from "react-collapsible-component";
 import { TreeSelect } from 'antd';
 import { Select } from 'antd';
+import { Switch } from 'antd';
 
 import 'antd/dist/antd.css';
 
 import Item from './item';
+import {
+    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
 
 const { Option } = Select;
 const { Panel } = Collapse;
@@ -36,6 +40,58 @@ interface Props {
     nodos: any,
     data: any
 }
+
+
+
+const data = [
+    {
+        name: '08:00', uv: 4000, pv: 2400, amt: 2400,
+    },
+    {
+        name: '08:30', uv: 3000, pv: 1398, amt: 2210,
+    },
+    {
+        name: '09:00', uv: 2000, pv: 9800, amt: 2290,
+    },
+    {
+        name: '09:30', uv: 2780, pv: 3908, amt: 2000,
+    },
+    {
+        name: '10:00', uv: 1890, pv: 4800, amt: 2181,
+    },
+    {
+        name: '10:30', uv: 2390, pv: 3800, amt: 2500,
+    },
+    {
+        name: '11:00', uv: 3490, pv: 4300, amt: 2100,
+    },
+    {
+        name: '10:30', uv: 2390, pv: 3800, amt: 2500,
+    },
+    {
+        name: '11:00', uv: 3490, pv: 4300, amt: 2100,
+    },
+    {
+        name: '11:30', uv: 2390, pv: 3800, amt: 2500,
+    },
+    {
+        name: '12:00', uv: 3490, pv: 4300, amt: 2100,
+    },
+    {
+        name: '12:30', uv: 2390, pv: 3800, amt: 2500,
+    },
+    {
+        name: '13:00', uv: 3490, pv: 4300, amt: 2100,
+    },
+    {
+        name: '13:30', uv: 2390, pv: 3800, amt: 2500,
+    },
+    {
+        name: '14:00', uv: 3490, pv: 4300, amt: 2100,
+    },
+];
+
+
 export default class Component extends React.Component<Props, State> {
 
     constructor(props: Props) {
@@ -46,103 +102,23 @@ export default class Component extends React.Component<Props, State> {
     render() {
         log.info('Template:render reached');
 
-        console.log('TREE')
-        console.log(this.props.data)
+        let treeData: any = []
+        for (let node in this.props.data) {
+            let _node: any =  {}
+            _node.title = node;
+            _node.value = node;
+            _node.key   = node;
+            _node.children = []
 
-
-        const treeData = [
-            {
-                title: 'Node1',
-                value: '0-0',
-                key: '0-0',
-                children: [
-                    {
-                        title: 'Child Node1',
-                        value: '0-0-0',
-                        key: '0-0-0',
-                    },
-                ],
-            },
-            {
-                title: 'Node2',
-                value: '0-1',
-                key: '0-1',
-                children: [
-                    {
-                        title: 'Child Node3',
-                        value: '0-1-0',
-                        key: '0-1-0',
-                    },
-                    {
-                        title: 'Child Node4',
-                        value: '0-1-1',
-                        key: '0-1-1',
-                    },
-                    {
-                        title: 'Child Node5',
-                        value: '0-1-2',
-                        key: '0-1-2',
-                    },
-                ],
-            },
-            {
-                title: 'Node3',
-                value: '0-2',
-                key: '0-2',
-                children: [
-                    {
-                        title: 'Child Node3',
-                        value: '0-2-0',
-                        key: '0-2-0',
-                    },
-                    {
-                        title: 'Child Node4',
-                        value: '0-2-1',
-                        key: '0-2-1',
-                    },
-                    {
-                        title: 'Child Node5',
-                        value: '0-2-2',
-                        key: '0-2-2',
-                    },
-                ],
-            },
-            {
-                title: 'Node4',
-                value: '0-3',
-                key: '0-3',
-                children: [
-                    {
-                        title: 'Child Node3',
-                        value: '0-3-0',
-                        key: '0-3-0',
-                    },
-                    {
-                        title: 'Child Node4',
-                        value: '0-3-1',
-                        key: '0-3-1',
-                    },
-                    {
-                        title: 'Child Node5',
-                        value: '0-3-2',
-                        key: '0-3-2',
-                    },
-                ],
-            },
-
-        ];
-        const tProps = {
-            treeData,
-            // value: this.state.value,
-            // onChange: this.onChange,
-            treeCheckable: true,
-            showCheckedStrategy: SHOW_PARENT,
-            searchPlaceholder: 'Please select',
-            maxTagCount: 3,
-            style: {
-                width: '100%',
-            },
-        };
+            for (let leaf of this.props.data[node]) {
+                 _node.children.push({
+                    title: leaf.nombre,
+                    value: leaf.codigo,
+                    key: leaf._id
+                 })
+            }
+            treeData.push(_node);
+        }
 
         let tabs:any[] = [];
         for (let nodo in this.props.nodos) {
@@ -153,14 +129,17 @@ export default class Component extends React.Component<Props, State> {
                 return (
                     <Collapse
                         bordered={false}
-                        //defaultActiveKey={['1']}
                         expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}
                     >
                         <Panel
-                            header={<div style={{color: '#ff0000'}}>{panel.codigo}</div>}
+                            header={(
+                                <div>
+                                    <div className={[style.header].join(' ')}>{panel.codigo}</div>
+                                </div>
+                            )}
                             key={index.toString()}
                         >
-                            <Item />
+                            <Item data={{tree: treeData}}/>
                         </Panel>
                     </Collapse>
                 )
@@ -178,6 +157,9 @@ export default class Component extends React.Component<Props, State> {
         return (
             <div className={[style.component].join(' ')} key={this.props._id}>
                 <Card className={[style.card].join(' ')}>
+
+
+
                     <Row>
                         <Col span={18}>
                             <div className={[style.prefix].join(' ')}>{this.props._id}</div>
@@ -190,6 +172,29 @@ export default class Component extends React.Component<Props, State> {
                     <CollapsibleComponent  name={this.props._id}>
                         <CollapsibleContent className={[style.collapsible].join(' ')}>
                             <Divider />
+
+                            <Row>
+                                <Col span={24}>
+                                    <BarChart
+                                        width={770}
+                                        height={100}
+                                        data={data}
+                                        margin={{
+                                            top: 5, right: 30, left: 20, bottom: 15,
+                                        }}
+                                    >
+
+                                        <XAxis dataKey="name" style={{fontSize: '8px !important'}}/>
+                                        <YAxis hide/>
+
+                                        <Bar dataKey="pv"  stackId="a" fill="#5e4fa2"  />
+                                        <Bar dataKey="uv"  stackId="a"  fill="#3288bd" />
+                                        <Bar dataKey="amt"   stackId="a" fill="#66c2a5" />
+                                    </BarChart>
+                                </Col>
+
+                            </Row>
+
                             <Tabs type="card" className={[style.tabs].join(' ')}>
                                 {tabs}
                             </Tabs>
@@ -207,58 +212,3 @@ export default class Component extends React.Component<Props, State> {
         );
     }
 }
-
-
-{/*<Collapse*/}
-{/*    bordered={false}*/}
-{/*    defaultActiveKey={['1']}*/}
-{/*    expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}*/}
-{/*>*/}
-{/*    <Panel header="Visual 1" key="1">*/}
-{/*        <div className={[style.well].join(' ')}>*/}
-{/*            <Row>*/}
-{/*                <Col span={24}>*/}
-{/*                    <TreeSelect {...tProps} />*/}
-{/*                </Col>*/}
-{/*            </Row>*/}
-{/*            <Row style={{marginTop: '10px'}}>*/}
-{/*                <Col span={12}>*/}
-{/*                    <Radio.Group defaultValue="a" buttonStyle="solid" >*/}
-{/*                        <Radio.Button value="a">Cualquiera</Radio.Button>*/}
-{/*                        <Radio.Button value="b">Hombre</Radio.Button>*/}
-{/*                        <Radio.Button value="c">Mujer</Radio.Button>*/}
-{/*                    </Radio.Group>*/}
-{/*                </Col>*/}
-{/*                <Col span={12}>*/}
-{/*                    <Select*/}
-{/*                        showSearch*/}
-{/*                        style={{ width: 200 }}*/}
-{/*                        placeholder="Select a person"*/}
-{/*                        optionFilterProp="children"*/}
-{/*                        // onChange={onChange}*/}
-{/*                        // onFocus={onFocus}*/}
-{/*                        // onBlur={onBlur}*/}
-{/*                        // onSearch={onSearch}*/}
-{/*                        // filterOption={(input, option) =>*/}
-{/*                        //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0*/}
-{/*                        // }*/}
-{/*                    >*/}
-{/*                        <Option value="jack">Jack</Option>*/}
-{/*                        <Option value="lucy">Lucy</Option>*/}
-{/*                        <Option value="tom">Tom</Option>*/}
-{/*                    </Select>,*/}
-{/*                </Col>*/}
-{/*            </Row>*/}
-{/*        </div>*/}
-{/*    </Panel>*/}
-{/*    <Panel header="Visual 2" key="2">*/}
-{/*        <div className={[style.well].join(' ')}>*/}
-{/*            <TreeSelect {...tProps} />*/}
-{/*        </div>*/}
-{/*    </Panel>*/}
-{/*    <Panel header="Visual 3" key="3">*/}
-{/*        <div className={[style.well].join(' ')}>*/}
-{/*            <TreeSelect {...tProps} />*/}
-{/*        </div>*/}
-{/*    </Panel>*/}
-{/*</Collapse>*/}

@@ -26,7 +26,6 @@ export default class Component extends React.Component<Props, State> {
     constructor(props: Props) {
         log.info('Template:constructor reached');
         super(props);
-
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
@@ -44,7 +43,7 @@ export default class Component extends React.Component<Props, State> {
     render() {
         log.info('Template:render reached');
         let items = null;
-        let examenes = 'WABAKI';
+        let examenes = null;
 
         if (this.state?.sedes && this.state?.examenes) {
             items = this.state.sedes.map((sede: any, index: number) => {
@@ -59,17 +58,13 @@ export default class Component extends React.Component<Props, State> {
             <div className={[style.component].join(' ')}>
                 <div className={[style.breadcrumb].join(' ')}>
                     <Breadcrumb>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>Inicio</Breadcrumb.Item>
                         <Breadcrumb.Item>
-                            <a href="">Application Center</a>
+                            <a href="">Administración</a>
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item>
-                            <a href="">Application List</a>
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Item>An Application</Breadcrumb.Item>
                     </Breadcrumb>
                 </div>
-                <div className={[style.title].join(' ')}>Example Title of Template</div>
+                <div className={[style.title].join(' ')}>Esquema de Administración de Sedes</div>
                 <div className={[style.body].join(' ')}>
                     <Loader
                         loading={<Spin indicator={<Icon type="loading" style={{fontSize: 40}} spin/>}/>}
